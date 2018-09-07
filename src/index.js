@@ -1,6 +1,11 @@
 const AWS = require("aws-sdk");
-const dynamo = new AWS.DynamoDB.DocumentClient({ region: 'eu-west-3' });
-const lambda = new AWS.Lambda.DocumentClient({ region: 'eu-west-3' });
+const params = {
+  region: 'eu-west-3',
+  credential: new AWS.Credential('../.credentials.json')
+};
+
+const dynamo = new AWS.DynamoDB.DocumentClient(params);
+const lambda = new AWS.Lambda(params);
 
 const TableName = `cryptomon-monsters-${process.env.NODE_ENV}`;
 const EventsTable = `cryptomon-events-${process.env.NODE_ENV}`;
@@ -11,14 +16,14 @@ exports.handler = (event, context, callback) => {
   */
   const eventId = 1;
   const eventObj = {
-    tokenId,
-    to,
-    atk /*recupero con web3*/,
-    def /*recupero con web3*/,
-    spd /*recupero con web3*/
+    tokenId: 1,
+    to: 'fake address',
+    atk: 21 /*recupero con web3*/,
+    def: 12 /*recupero con web3*/,
+    spd: 7 /*recupero con web3*/
   };
 
-  return Promise.all([
+  /*return */Promise.all([
     dynamo.put({
       TableName,
       Item: {
@@ -45,5 +50,5 @@ exports.handler = (event, context, callback) => {
   // promise che fa partire la lambda images
   // promise che segni sulla table events l'evento come processato
   ])
-    .then(() => callback(null, event))
+    .then(console.log)
 };

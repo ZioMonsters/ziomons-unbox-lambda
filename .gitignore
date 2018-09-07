@@ -2,4 +2,3 @@ node_modules/
 src/node_modules/
 .idea/
 .credentials.json
-.test-credentials.json
