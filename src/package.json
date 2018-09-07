@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "cryptomon-unbox-lambda",
+  "name": "cryptomon-unbox-lambda-${env}",
   "description": "",
   "author": " <>",
   "contributors": [
