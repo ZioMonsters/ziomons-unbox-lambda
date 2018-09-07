@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "cryptomon-unbox-lambda",
+  "description": "",
+  "author": " <>",
+  "contributors": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "dependencies": {}
+}
