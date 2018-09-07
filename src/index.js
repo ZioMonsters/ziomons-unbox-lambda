@@ -18,7 +18,7 @@ exports.handler = (event, context, callback) => {
   };
 
   return Promise.all([
-    dynamo.batchWrite({
+    dynamo.put({
       TableName,
       Item: {
         monsterId: eventObj.tokenId,
