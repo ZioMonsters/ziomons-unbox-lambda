@@ -354,5 +354,5 @@ gulp.task("invoke", next => {
  * @order {12}
  */
 gulp.task("invoke-local", next => {
-  require(join(__dirname, "utils", "test-local.js"))(next)
+  require(join(process.cwd(), "utils", "test-local.js"))(next)
 })
