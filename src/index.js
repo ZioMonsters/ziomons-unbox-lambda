@@ -5,12 +5,13 @@ const lambda = new AWS.Lambda({ region: 'eu-west-3' });
 const TableName = `cryptomon-monsters-${process.env.NODE_ENV}`;
 const EventsTable = `cryptomon-events-${process.env.NODE_ENV}`;
 
-exports.handler = ({ Records: [{ body }] }, context, callback) => {
+exports.handler = (event/*{ Records: [{ body }] }*/, context, callback) => {
   /*
     qua ci saranno i valori presi dall'evento che poi scrivo su dynamo
   */
 
-  const { tokenId, to, atk, def, spd } = JSON.parse(body);
+  const { Records: [{ body }]} = event;
+  const { tokenId, to, atk, def, spd} = JSON.parse(body);
   const transactionId = '1';
   const type = 'test';
 
@@ -57,5 +58,6 @@ exports.handler = ({ Records: [{ body }] }, context, callback) => {
   // promise che segni sulla table events l'evento come processato
   ])
     .then(console.log)
+    .then(() => callback(null, event))
     .catch(console.error)
 };
