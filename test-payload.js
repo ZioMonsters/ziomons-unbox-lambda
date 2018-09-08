@@ -1,5 +1,13 @@
 module.exports = {
-  key1: "value1",
-  key2: "value2",
-  key3: "value3"
-}
+  Records: [
+    {
+      body: JSON.stringify({
+        tokenId: 8,
+        to: 'test',
+        atk: 21,
+        def: 12,
+        spd: 8
+      })
+    }
+  ]
+};
