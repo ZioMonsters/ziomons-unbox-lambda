@@ -31,14 +31,6 @@ exports.handler = (event/*{ Records: [{ body }] }*/, context, callback) => {
     Payload: JSON.stringify({ tokenId })
   }).promise();
 
-  const deleteEvent = dynamo.delete({
-    TableName: EventsTable,
-    Key: {
-      transactionId,
-      type
-    }
-  }).promise();
-
   const updateEvent = dynamo.put({
     TableName: EventsTable,
     Item: {
@@ -51,7 +43,6 @@ exports.handler = (event/*{ Records: [{ body }] }*/, context, callback) => {
   /*return */Promise.all([
     putMonster,
     createImageMonster,
-    deleteEvent,
     updateEvent
   // promise che mette sulla table di dynamo il mostro con le sue caratteristiche (PartitionKey = monsterId, SortKey = user)
   // promise che fa partire la lambda images
