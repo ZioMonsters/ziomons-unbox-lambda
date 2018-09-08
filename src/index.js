@@ -5,16 +5,12 @@ const lambda = new AWS.Lambda({ region: 'eu-west-3' });
 const TableName = `cryptomon-monsters-${process.env.NODE_ENV}`;
 const EventsTable = `cryptomon-events-${process.env.NODE_ENV}`;
 
-exports.handler = (event/*{ Records: [{ body }] }*/, context, callback) => {
+exports.handler = (event, context, callback) => {
   /*
     qua ci saranno i valori presi dall'evento che poi scrivo su dynamo
   */
-
-  const { Records: [{ body }]} = event;
-  const { tokenId, to, atk, def, spd} = JSON.parse(body);
-  const transactionId = '1';
-  const type = 'test';
-
+  const { Records: [{ body }] } = event;
+  const { eventId, to, tokenId, atk, spd, def, exp, rarity } = JSON.parse(body);
   const putMonster = dynamo.put({
     TableName,
     Item: {
@@ -22,7 +18,9 @@ exports.handler = (event/*{ Records: [{ body }] }*/, context, callback) => {
       user: to,
       attack: atk,
       defense: def,
-      speed: spd
+      speed: spd,
+      experence: exp,
+      rarity: rarity
     }
   }).promise();
 
@@ -34,13 +32,14 @@ exports.handler = (event/*{ Records: [{ body }] }*/, context, callback) => {
   const updateEvent = dynamo.put({
     TableName: EventsTable,
     Item: {
-      transactionId,
-      type,
+      transactionId: eventId,
+      type: 'unbox',
       processed: true
     }
   }).promise();
 
-  /*return */Promise.all([
+  /*return */
+  Promise.all([
     putMonster,
     createImageMonster,
     updateEvent

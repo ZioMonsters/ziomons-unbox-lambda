@@ -1,13 +1,31 @@
+const data = {
+    eventId: "bellona",
+    to: "0x4291def1b2f8988f0028ed7e13edfd74a02ae384",
+    tokenId: 12,
+    atk: 11,
+    def: 12,
+    spd: 10,
+    exp: 0,
+    rarity: 1
+}
+
 module.exports = {
-  Records: [
+"Records": [
     {
-      body: JSON.stringify({
-        tokenId: 8,
-        to: 'test',
-        atk: 21,
-        def: 12,
-        spd: 8
-      })
+        "messageId": "c80e8021-a70a-42c7-a470-796e1186f753",
+        "receiptHandle": "AQEBJQ+/u6NsnT5t8Q/VbVxgdUl4TMKZ5FqhksRdIQvLBhwNvADoBxYSOVeCBXdnS9P+erlTtwEALHsnBXynkfPLH3BOUqmgzP25U8kl8eHzq6RAlzrSOfTO8ox9dcp6GLmW33YjO3zkq5VRYyQlJgLCiAZUpY2D4UQcE5D1Vm8RoKfbE+xtVaOctYeINjaQJ1u3mWx9T7tork3uAlOe1uyFjCWU5aPX/1OHhWCGi2EPPZj6vchNqDOJC/Y2k1gkivqCjz1CZl6FlZ7UVPOx3AMoszPuOYZ+Nuqpx2uCE2MHTtMHD8PVjlsWirt56oUr6JPp9aRGo6bitPIOmi4dX0FmuMKD6u/JnuZCp+AXtJVTmSHS8IXt/twsKU7A+fiMK01NtD5msNgVPoe9JbFtlGwvTQ==",
+        "body": JSON.stringify(data),
+        "attributes": {
+            "ApproximateReceiveCount": "3",
+            "SentTimestamp": "1529104986221",
+            "SenderId": "594035263019",
+            "ApproximateFirstReceiveTimestamp": "1529104986230"
+        },
+        "messageAttributes": {},
+        "md5OfBody": "9bb58f26192e4ba00f01e2e7b136bbd8",
+        "eventSource": "aws:sqs",
+        "eventSourceARN": "arn:aws:sqs:us-west-2:594035263019:NOTFIFOQUEUE",
+        "awsRegion": "us-west-2"
     }
-  ]
-};
+]
+}
