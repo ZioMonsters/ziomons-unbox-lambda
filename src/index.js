@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
     qua ci saranno i valori presi dall'evento che poi scrivo su dynamo
   */
   const { Records: [{ body }] } = event;
-  const { eventId, to, tokenId, atk, spd, def, exp, rarity } = JSON.parse(body);
+  const { eventId, to, tokenId, atk, spd, def, exp, rarity, lvl } = JSON.parse(body);
   const putMonster = dynamo.put({
     TableName,
     Item: {
@@ -19,8 +19,9 @@ exports.handler = (event, context, callback) => {
       attack: atk,
       defense: def,
       speed: spd,
-      experence: exp,
-      rarity: rarity
+      experience: exp,
+      rarity: rarity,
+      level: lvl
     }
   }).promise();
 

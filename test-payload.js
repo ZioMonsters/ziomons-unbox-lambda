@@ -6,7 +6,8 @@ const data = {
     def: 12,
     spd: 10,
     exp: 0,
-    rarity: 1
+    rarity: 1,
+    lvl: 10
 }
 
 module.exports = {
